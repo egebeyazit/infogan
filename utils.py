@@ -98,12 +98,12 @@ def sample_image(generator1, generator2, n_row, batches_done):
     # Get varied c1 and c2
     zeros = np.zeros((n_row ** 2, 1))
     c_varied = np.repeat(np.linspace(-1, 1, n_row)[:, np.newaxis], n_row, 0)
-    #c1 = Variable(FloatTensor(np.concatenate((c_varied, zeros), -1)))
-    #c2 = Variable(FloatTensor(np.concatenate((zeros, c_varied), -1)))
+    c1 = Variable(FloatTensor(np.concatenate((c_varied, zeros), -1)))
+    c2 = Variable(FloatTensor(np.concatenate((zeros, c_varied), -1)))
 
-    c = Variable(FloatTensor(c_varied))
-    sample1 = generator1(static_z, static_label, c)
-    sample2 = generator2(static_z, static_label, c)
+    #c = Variable(FloatTensor(c_varied))
+    sample1 = generator1(static_z, static_label, c1)
+    sample2 = generator2(static_z, static_label, c2)
    
     save_image(sample1.data, "images/generator1/%d.png" % batches_done, nrow=n_row, normalize=True)
     save_image(sample2.data, "images/generator2/%d.png" % batches_done, nrow=n_row, normalize=True)
