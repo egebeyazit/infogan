@@ -99,11 +99,10 @@ def sample_image(generator, n_row, batches_done):
     #c1 = Variable(FloatTensor(np.concatenate((c_varied, zeros), -1)))
     #c2 = Variable(FloatTensor(np.concatenate((zeros, c_varied), -1)))
 
-    c1 = Variable(FloatTensor(c_varied))
-    c2 = Variable(FloatTensor(c_varied))
-
-    sample1 = generator(static_z, static_label, c1)
-    sample2 = generator(static_z, static_label, c2)
-    save_image(sample1.data, "images/varying_c1/%d.png" % batches_done, nrow=n_row, normalize=True)
-    save_image(sample2.data, "images/varying_c2/%d.png" % batches_done, nrow=n_row, normalize=True)
+    c = Variable(FloatTensor(c_varied))
+    sample1 = generator1(static_z, static_label, c)
+    sample2 = generator2(static_z, static_label, c)
+   
+    save_image(sample1.data, "images/generator1/%d.png" % batches_done, nrow=n_row, normalize=True)
+    save_image(sample2.data, "images/generator2/%d.png" % batches_done, nrow=n_row, normalize=True)
 
