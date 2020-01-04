@@ -85,13 +85,15 @@ def get_static_gen_input():
     return static_z, static_label, static_code
 
 
-def sample_image(generator, n_row, batches_done):
+def sample_image(generator1, generator2, n_row, batches_done):
     static_z, static_label, static_code = get_static_gen_input()
     """Saves a grid of generated digits ranging from 0 to n_classes"""
     # Static sample
     z = Variable(FloatTensor(np.random.normal(0, 1, (n_row ** 2, opt.latent_dim))))
-    static_sample = generator(z, static_label, static_code)
-    save_image(static_sample.data, "images/static/%d.png" % batches_done, nrow=n_row, normalize=True)
+    static_sample1 = generator1(z, static_label, static_code)
+    static_sample2 = generator2(z, static_label, static_code)
+    save_image(static_sample1.data, "images/static1/%d.png" % batches_done, nrow=n_row, normalize=True)
+    save_image(static_sample2.data, "images/static2/%d.png" % batches_done, nrow=n_row, normalize=True)
 
     # Get varied c1 and c2
     zeros = np.zeros((n_row ** 2, 1))
