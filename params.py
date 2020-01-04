@@ -8,7 +8,7 @@ parser.add_argument("--b1", type=float, default=0.5, help="adam: decay of first 
 parser.add_argument("--b2", type=float, default=0.999, help="adam: decay of first order momentum of gradient")
 parser.add_argument("--n_cpu", type=int, default=8, help="number of cpu threads to use during batch generation")
 parser.add_argument("--latent_dim", type=int, default=62, help="dimensionality of the latent space")
-parser.add_argument("--code_dim", type=int, default=1, help="latent code")
+parser.add_argument("--code_dim", type=int, default=2, help="latent code")
 parser.add_argument("--n_classes", type=int, default=10, help="number of classes for dataset")
 parser.add_argument("--img_size", type=int, default=32, help="size of each image dimension")
 parser.add_argument("--channels", type=int, default=1, help="number of image channels")
